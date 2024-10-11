@@ -13,7 +13,7 @@ public class Main {
                                 0. Salid
                                 1. Calcular el precio final con descuentos
                                 2. Generar reportes de inventario
-                                3.
+                                3. Gestión de clientes
                                 4.
                                 5.
                                 6.
@@ -30,6 +30,9 @@ public class Main {
                         break;
                     case 2:
                         ejercicio2();
+                        break;
+                    case 3:
+                        ejercicio3();
                         break;
                     default:
                         JOptionPane.showMessageDialog(null, "Opcion no valida");
@@ -58,13 +61,17 @@ public class Main {
         mensaje.append("\nVentas totales: ").append(calcularIngresosMensuales(ventas));
         JOptionPane.showMessageDialog(null, mensaje);
     }
-
     public static void ejercicio2() {
         String[] productos = {"Televisor", "Celular", "Laptop", "Tablet", "Cámara"};
         int[] stocks = {3, 10, 2, 6, 4};
 
         generarReporteBajoStock(productos, stocks);
 
+    }
+    public static void ejercicio3(){
+        String[] clientes = {"Juan", "María", "Pedro", "Ana", "Luis", "Sofía", "Carlos", "Laura", "Javier", "Elena"};
+        int[] facturasPendientes = {45, 123, 678, 234, 890, 12, 567, 345, 789, 456};
+        enviarFacturas(clientes, facturasPendientes);
     }
 
     //----------------------Funciones--------------------------
@@ -84,5 +91,14 @@ public class Main {
             }
         }
                 JOptionPane.showMessageDialog(null, mensaje);
+    }
+    public static void enviarFacturas(String[] clientes, int[] facturasPendientes){
+        StringBuilder mensaje = new StringBuilder("Facturas pendientes mayores a 500\n");
+        for (int i = 0; i < clientes.length; i++) {
+            if(facturasPendientes[i] > 500){
+                mensaje.append(clientes[i]).append(" debe: $").append(facturasPendientes[i]).append(".\n");
+            }
+        }
+        JOptionPane.showMessageDialog(null, mensaje);
     }
 }

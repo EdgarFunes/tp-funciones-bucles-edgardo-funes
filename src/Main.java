@@ -14,8 +14,8 @@ public class Main {
                                 1. Calcular el precio final con descuentos
                                 2. Generar reportes de inventario
                                 3. Gestión de clientes
-                                4.
-                                5.
+                                4. Cálculo de descuentos para fidelización
+                                5. Promedio de satisfacción del cliente
                                 6.
                                 7.
                                 8.
@@ -33,6 +33,12 @@ public class Main {
                         break;
                     case 3:
                         ejercicio3();
+                        break;
+                    case 4:
+                        ejercicio4();
+                        break;
+                    case 5:
+                        ejercicio5();
                         break;
                     default:
                         JOptionPane.showMessageDialog(null, "Opcion no valida");
@@ -68,10 +74,19 @@ public class Main {
         generarReporteBajoStock(productos, stocks);
 
     }
-    public static void ejercicio3(){
+    public static void ejercicio3() {
         String[] clientes = {"Juan", "María", "Pedro", "Ana", "Luis", "Sofía", "Carlos", "Laura", "Javier", "Elena"};
         int[] facturasPendientes = {45, 123, 678, 234, 890, 12, 567, 345, 789, 456};
         enviarFacturas(clientes, facturasPendientes);
+    }
+    public static void ejercicio4() {
+        String[] clientes = {"Juan", "María", "Pedro", "Ana", "Luis", "Sofía", "Carlos", "Laura", "Javier", "Elena"};
+        int[] compras = {3, 15, 7, 19, 2, 11, 6, 14, 8, 17};
+        calcularDescuento(clientes, compras);
+    }
+    public static void ejercicio5() {
+        int[] calificaciones = {2, 5, 1, 3, 5, 1, 3, 1, 1, 5};
+        calcularPromedioSatisfaccion(calificaciones);
     }
 
     //----------------------Funciones--------------------------
@@ -82,7 +97,6 @@ public class Main {
         }
         return suma;
     }
-
     public static void generarReporteBajoStock(String[] productos, int[] stocks) {
         StringBuilder mensaje = new StringBuilder("Productos con poco stock\n");
         for (int i = 0; i < productos.length; i++) {
@@ -100,5 +114,23 @@ public class Main {
             }
         }
         JOptionPane.showMessageDialog(null, mensaje);
+    }
+    public static void calcularDescuento(String[] clientes, int[] compras){
+        StringBuilder mensaje = new StringBuilder("Clientes con descuento\n");
+        for (int i = 0; i < clientes.length; i++) {
+            if(compras[i] > 10) {
+                mensaje.append(clientes[i]).append(" compro: ").append(compras[i]).append(" veces.\n");
+            }
+        }
+        JOptionPane.showMessageDialog(null, mensaje);
+    }
+    public static void calcularPromedioSatisfaccion(int[] calificaciones) {
+        float suma = 0;
+        for (int i = 0; i < calificaciones.length; i++) {
+            suma += calificaciones[i];
+        }
+        float promedio = suma / calificaciones.length;
+
+        JOptionPane.showMessageDialog(null, "Promedio: "+promedio);
     }
 }

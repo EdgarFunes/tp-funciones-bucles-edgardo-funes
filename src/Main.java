@@ -16,8 +16,8 @@ public class Main {
                                 3. Gestión de clientes
                                 4. Cálculo de descuentos para fidelización
                                 5. Promedio de satisfacción del cliente
-                                6.
-                                7.
+                                6. Cálculo de impuestos
+                                7. Descuento por compras grandes
                                 8.
                                 9.
                                 """));
@@ -39,6 +39,12 @@ public class Main {
                         break;
                     case 5:
                         ejercicio5();
+                        break;
+                    case 6:
+                        ejercicio6();
+                        break;
+                    case 7:
+                        ejercicio7();
                         break;
                     default:
                         JOptionPane.showMessageDialog(null, "Opcion no valida");
@@ -88,6 +94,33 @@ public class Main {
         int[] calificaciones = {2, 5, 1, 3, 5, 1, 3, 1, 1, 5};
         calcularPromedioSatisfaccion(calificaciones);
     }
+    public static void ejercicio6() {
+        double[] facturas = {100.00, 250.50, 75.75, 400.00, 150.25};
+
+        // Calcular y mostrar el impuesto para cada factura
+        StringBuilder resultado = new StringBuilder("Impuestos de venta:\n");
+        for (double factura : facturas) {
+            double impuesto = calcularImpuesto(factura);
+            resultado.append("Factura: ").append(factura).append(" - Impuesto: ").append(impuesto).append("\n");
+        }
+
+        // Mostrar el resultado
+        JOptionPane.showMessageDialog(null, resultado.toString());
+    }
+    public static void ejercicio7() {
+        double[] compras = {450.00, 600.00, 300.50, 800.00, 520.75};
+
+        // Calcular y mostrar el monto final para cada compra
+        StringBuilder resultado = new StringBuilder("Montos finales después del descuento:\n");
+        for (double compra : compras) {
+            double montoFinal = aplicarDescuento(compra);
+            resultado.append("Compra: ").append(compra).append(" - Monto final: ").append(montoFinal).append("\n");
+        }
+
+        // Mostrar el resultado
+        JOptionPane.showMessageDialog(null, resultado.toString());
+    }
+
 
     //----------------------Funciones--------------------------
     public static int calcularIngresosMensuales(int[] ventas) {
@@ -126,11 +159,20 @@ public class Main {
     }
     public static void calcularPromedioSatisfaccion(int[] calificaciones) {
         float suma = 0;
-        for (int i = 0; i < calificaciones.length; i++) {
-            suma += calificaciones[i];
+        for (int calificacione : calificaciones) {
+            suma += calificacione;
         }
         float promedio = suma / calificaciones.length;
 
         JOptionPane.showMessageDialog(null, "Promedio: "+promedio);
+    }
+    public static double calcularImpuesto(double monto) {
+        return monto * 0.21;
+    }
+    public static double aplicarDescuento(double monto) {
+        if (monto > 500) {
+            return monto * 0.85; // Aplica el 15% de descuento
+        }
+        return monto; // Sin descuento
     }
 }

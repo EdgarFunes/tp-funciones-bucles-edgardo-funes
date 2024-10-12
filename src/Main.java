@@ -19,7 +19,7 @@ public class Main {
                                 6. Cálculo de impuestos
                                 7. Descuento por compras grandes
                                 8. Control de horas trabajadas
-                                9.
+                                9. Calcular el precio final con descuentos
                                 """));
                 switch (option) {
                     case 0:
@@ -48,6 +48,9 @@ public class Main {
                         break;
                     case 8:
                         ejercicio8();
+                        break;
+                    case 9:
+                        ejercicio9();
                         break;
                     default:
                         JOptionPane.showMessageDialog(null, "Opcion no valida");
@@ -100,41 +103,34 @@ public class Main {
     public static void ejercicio6() {
         double[] facturas = {100.00, 250.50, 75.75, 400.00, 150.25};
 
-        // Calcular y mostrar el impuesto para cada factura
         StringBuilder resultado = new StringBuilder("Impuestos de venta:\n");
         for (double factura : facturas) {
             double impuesto = calcularImpuesto(factura);
             resultado.append("Factura: ").append(factura).append(" - Impuesto: ").append(impuesto).append("\n");
         }
 
-        // Mostrar el resultado
         JOptionPane.showMessageDialog(null, resultado.toString());
     }
     public static void ejercicio7() {
         double[] compras = {450.00, 600.00, 300.50, 800.00, 520.75};
 
-        // Calcular y mostrar el monto final para cada compra
         StringBuilder resultado = new StringBuilder("Montos finales después del descuento:\n");
         for (double compra : compras) {
             double montoFinal = aplicarDescuento(compra);
             resultado.append("Compra: ").append(compra).append(" - Monto final: ").append(montoFinal).append("\n");
         }
 
-        // Mostrar el resultado
         JOptionPane.showMessageDialog(null, resultado.toString());
     }
     public static void ejercicio8() {
         String[] empleados = {"Juan", "María", "Pedro", "Ana", "Luis"};
-        // Crear un arreglo con las horas trabajadas por cada empleado
         double[] horasTrabajadas = new double[empleados.length];
 
-        // Solicitar las horas trabajadas para cada empleado
         for (int i = 0; i < empleados.length; i++) {
             String input = JOptionPane.showInputDialog("Ingrese las horas trabajadas por " + empleados[i] + ":");
             horasTrabajadas[i] = Double.parseDouble(input);
         }
 
-        // Calcular y mostrar el pago semanal para cada empleado
         StringBuilder resultado = new StringBuilder("Pagos semanales:\n");
         for (int i = 0; i < empleados.length; i++) {
             double pago = calcularPagoSemanal(horasTrabajadas[i]);
@@ -142,6 +138,16 @@ public class Main {
         }
 
         // Mostrar el resultado
+        JOptionPane.showMessageDialog(null, resultado.toString());
+    }
+    public static void ejercicio9() {
+        double[] preciosOriginales = {100.00, 250.50, 75.75, 400.00, 150.25};
+
+        StringBuilder resultado = new StringBuilder("Precios finales después del descuento:\n");
+        for (double precio : preciosOriginales) {
+            double precioFinal = calcularPrecioFinal(precio);
+            resultado.append("Precio original: $").append(precio).append(" - Precio final: $").append(precioFinal).append("\n");
+        }
         JOptionPane.showMessageDialog(null, resultado.toString());
     }
 
@@ -195,12 +201,16 @@ public class Main {
     }
     public static double aplicarDescuento(double monto) {
         if (monto > 500) {
-            return monto * 0.85; // Aplica el 15% de descuento
+            return monto * 0.85;
         }
-        return monto; // Sin descuento
+        return monto;
     }
     public static double calcularPagoSemanal(double horas) {
-        double tarifaPorHora = 15.0; // Tarifa de $15 por hora
-        return horas * tarifaPorHora; // Calcular el pago
+        double tarifaPorHora = 15.0;
+        return horas * tarifaPorHora;
+    }
+    public static double calcularPrecioFinal(double precio) {
+        double descuento = 0.10;
+        return precio * (1 - descuento);
     }
 }

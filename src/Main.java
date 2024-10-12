@@ -18,7 +18,7 @@ public class Main {
                                 5. Promedio de satisfacción del cliente
                                 6. Cálculo de impuestos
                                 7. Descuento por compras grandes
-                                8.
+                                8. Control de horas trabajadas
                                 9.
                                 """));
                 switch (option) {
@@ -45,6 +45,9 @@ public class Main {
                         break;
                     case 7:
                         ejercicio7();
+                        break;
+                    case 8:
+                        ejercicio8();
                         break;
                     default:
                         JOptionPane.showMessageDialog(null, "Opcion no valida");
@@ -120,6 +123,27 @@ public class Main {
         // Mostrar el resultado
         JOptionPane.showMessageDialog(null, resultado.toString());
     }
+    public static void ejercicio8() {
+        String[] empleados = {"Juan", "María", "Pedro", "Ana", "Luis"};
+        // Crear un arreglo con las horas trabajadas por cada empleado
+        double[] horasTrabajadas = new double[empleados.length];
+
+        // Solicitar las horas trabajadas para cada empleado
+        for (int i = 0; i < empleados.length; i++) {
+            String input = JOptionPane.showInputDialog("Ingrese las horas trabajadas por " + empleados[i] + ":");
+            horasTrabajadas[i] = Double.parseDouble(input);
+        }
+
+        // Calcular y mostrar el pago semanal para cada empleado
+        StringBuilder resultado = new StringBuilder("Pagos semanales:\n");
+        for (int i = 0; i < empleados.length; i++) {
+            double pago = calcularPagoSemanal(horasTrabajadas[i]);
+            resultado.append(empleados[i]).append(": $").append(pago).append("\n");
+        }
+
+        // Mostrar el resultado
+        JOptionPane.showMessageDialog(null, resultado.toString());
+    }
 
 
     //----------------------Funciones--------------------------
@@ -174,5 +198,9 @@ public class Main {
             return monto * 0.85; // Aplica el 15% de descuento
         }
         return monto; // Sin descuento
+    }
+    public static double calcularPagoSemanal(double horas) {
+        double tarifaPorHora = 15.0; // Tarifa de $15 por hora
+        return horas * tarifaPorHora; // Calcular el pago
     }
 }

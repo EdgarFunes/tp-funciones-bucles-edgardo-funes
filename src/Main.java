@@ -70,7 +70,7 @@ public class Main {
 
         for (int i = 0; i < ventas.length; i++) {
             ventas[i] = random.nextInt(1000);
-            mensaje.append(ventas[i] + ", ");
+            mensaje.append(ventas[i]).append(", ");
             if (ward == 6) {
                 mensaje.append("\n");
                 ward = 0;
@@ -164,7 +164,7 @@ public class Main {
         StringBuilder mensaje = new StringBuilder("Productos con poco stock\n");
         for (int i = 0; i < productos.length; i++) {
             if (stocks[i] < 5) {
-                mensaje.append(productos[i] + " - Unidades: " + stocks[i]+"\n");
+                mensaje.append(productos[i]).append(" - Unidades: ").append(stocks[i]).append("\n");
             }
         }
                 JOptionPane.showMessageDialog(null, mensaje);
